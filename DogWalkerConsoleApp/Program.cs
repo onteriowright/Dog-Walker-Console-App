@@ -42,6 +42,9 @@ namespace DogWalkerConsoleApp
             var walkerRepo = new WalkerRepository();
             var allWalkers = walkerRepo.getAllWalkers();
 
+            Console.WriteLine("Listing all walkers:");
+            Console.WriteLine();
+
             foreach (var walker in allWalkers)
             {
                 Console.WriteLine($"Name: {walker.Name}");

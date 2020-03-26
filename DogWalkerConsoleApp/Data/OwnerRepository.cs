@@ -29,7 +29,7 @@ namespace DogWalkerConsoleApp.Data
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT o.Id, o.Name, o.Address, o.NeighborhoodId, n.Name NeighborhoodName
+                        SELECT o.Id, o.Name, o.Address, o.Phone, o.NeighborhoodId, n.Name NeighborhoodName
                         FROM Owner o
                         LEFT JOIN Neighborhood n
                         ON o.NeighborhoodId = n.Id";
@@ -54,8 +54,8 @@ namespace DogWalkerConsoleApp.Data
                         int neighborIdColumn = reader.GetOrdinal("NeighborhoodId");
                         int neighborhoodIdValue = reader.GetInt32(neighborIdColumn);
 
-                        //int phoneColumn = reader.GetOrdinal("Phone");
-                        //string phoneValue = reader.GetString(phoneColumn);
+                        int phoneColumn = reader.GetOrdinal("Phone");
+                        string phoneValue = reader.GetString(phoneColumn);
 
                         int neighborhoodNameColumn = reader.GetOrdinal("NeighborhoodName");
                         string neighborhoodNameValue = reader.GetString(neighborhoodNameColumn);
@@ -65,7 +65,7 @@ namespace DogWalkerConsoleApp.Data
                             Id = idValue,
                             Name = nameValue,
                             Address = addressValue,
-                            //Phone = phoneValue,
+                            Phone = phoneValue,
                             NeighborhoodId = neighborhoodIdValue,
                             Neighborhood = new Neighborhood()
                             {
